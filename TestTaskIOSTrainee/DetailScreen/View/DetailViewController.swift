@@ -10,6 +10,8 @@ import UIKit
 class DetailViewController: UIViewController {
 
     // MARK: - Properties
+    let detailNetwork = DetailNetwork()
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +88,12 @@ class DetailViewController: UIViewController {
         setupAppearance()
         setupViews()
         setupConstraints()
+        
+        detailNetwork.fetchData { result in
+            if let data = result {
+                print(result)
+            }
+        }
     }
     
     //  MARK: - Methods
