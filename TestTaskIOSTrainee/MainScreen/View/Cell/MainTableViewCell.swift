@@ -50,7 +50,7 @@ class MainTableViewCell: UITableViewCell {
     lazy var expandButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .button
-        button.setTitle("Expand", for: .normal)
+        button.setTitle(Helper.Name.expand, for: .normal)
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(expandButtonAction), for: .touchUpInside)

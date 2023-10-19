@@ -40,6 +40,7 @@ class MainViewController: UIViewController {
     
     func setAppearance() {
         view.backgroundColor = .white
+        navigationItem.title = Helper.Name.title
     }
     
     func setDelegate() {
@@ -54,21 +55,21 @@ class MainViewController: UIViewController {
     }
     
     private func setupSortedButton() {
-        let date = UIAction(title: "Date",
-                            image: UIImage(systemName: "calendar")) { [weak self] _ in
+        let date = UIAction(title: Helper.Name.date,
+                            image: Helper.Image.calendar) { [weak self] _ in
             self?.mainViewModel.sortPostsByDate()
             self?.tableView.reloadData()
         }
         
-        let rate = UIAction(title: "Rate",
-                            image: UIImage(systemName: "heart")) { [weak self] _ in
+        let rate = UIAction(title: Helper.Name.rate,
+                            image: Helper.Image.heart) { [weak self] _ in
             self?.mainViewModel.sortPostsByRate()
             self?.tableView.reloadData()
         }
         
-        let topMenu = UIMenu(title: "Sorted by", children: [date, rate])
+        let topMenu = UIMenu(title: Helper.Name.sortedBy, children: [date, rate])
         let barButton = UIBarButtonItem(
-            image: UIImage(named: "sort"),
+            image: Helper.Image.sorted,
             menu: topMenu)
         navigationController?.navigationBar.tintColor = .black
         navigationItem.rightBarButtonItem = barButton        
@@ -102,7 +103,7 @@ extension MainViewController: UITableViewDataSource {
         /// Set the expandButton functionality: expand and collapse description
         if expandedCell.contains(indexPath.row) {
             cell.descriptionLabel.numberOfLines = 0
-            cell.expandButton.setTitle("Collapse", for: .normal)
+            cell.expandButton.setTitle(Helper.Name.collapse, for: .normal)
         }
         else {
             cell.descriptionLabel.numberOfLines = 2

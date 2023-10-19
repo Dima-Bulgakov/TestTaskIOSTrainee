@@ -111,7 +111,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        navigationItem.title = "Title"
+        navigationItem.title = Helper.Name.title
         view.backgroundColor = .systemBackground
     }
     

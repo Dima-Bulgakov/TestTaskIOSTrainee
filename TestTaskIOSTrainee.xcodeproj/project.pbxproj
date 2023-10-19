@@ -21,6 +21,7 @@
 		32BF15F22AE11A80007EC056 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F12AE11A80007EC056 /* DetailModel.swift */; };
 		32BF15F42AE11A8B007EC056 /* DetailNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F32AE11A8B007EC056 /* DetailNetworkManager.swift */; };
 		32BF15F82AE162CE007EC056 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F72AE162CE007EC056 /* Extension+UIColor.swift */; };
+		32BF15FA2AE164E5007EC056 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F92AE164E5007EC056 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		32BF15F12AE11A80007EC056 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		32BF15F32AE11A8B007EC056 /* DetailNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNetworkManager.swift; sourceTree = "<group>"; };
 		32BF15F72AE162CE007EC056 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		32BF15F92AE164E5007EC056 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 		32BF15F62AE11A9E007EC056 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				32BF15F92AE164E5007EC056 /* Helper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				32BF15F22AE11A80007EC056 /* DetailModel.swift in Sources */,
 				32BF15DB2AE1193C007EC056 /* MainViewController.swift in Sources */,
 				32BF15E62AE119F2007EC056 /* MainNetworkManager.swift in Sources */,
+				32BF15FA2AE164E5007EC056 /* Helper.swift in Sources */,
 				32BF15EE2AE11A62007EC056 /* DetailViewController.swift in Sources */,
 				32BF15F82AE162CE007EC056 /* Extension+UIColor.swift in Sources */,
 			);
