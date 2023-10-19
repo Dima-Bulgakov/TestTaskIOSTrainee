@@ -5,7 +5,7 @@
 //  Created by Dima on 19.10.2023.
 //
 
-import Foundation
+import UIKit
 
 final class DetailNetworkManager {
     
@@ -40,5 +40,20 @@ final class DetailNetworkManager {
             }
         }
         data.resume()
+    }
+    
+    func loadImage(from imageURL: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: imageURL) { data, response, error in
+            if let error = error {
+                print("Error fetching image data: \(error.localizedDescription)")
+                completion(nil)
+            } else if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            } else {
+                completion(nil)
+            }
+        }.resume()
     }
 }

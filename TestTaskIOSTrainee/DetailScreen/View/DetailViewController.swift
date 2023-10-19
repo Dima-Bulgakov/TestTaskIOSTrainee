@@ -123,6 +123,12 @@ class DetailViewController: UIViewController {
             descriptionLabel.text = post.text
             likeLabel.text = "❤️\(post.likesCount)"
             dateLabel.text = "\(post.timeshamp)"
+            
+            if let urlImage = post.postImage {
+                detailViewModel.loadImage(from: urlImage) { [weak self] image in
+                    self?.mainImageView.image = image
+                }
+            }
         }
     }
 }
