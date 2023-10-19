@@ -86,6 +86,19 @@ extension MainViewController: UITableViewDataSource {
         let post = mainViewModel.indexPost(at: indexPath.row)
         let formattedDate = mainViewModel.formattedDateForPost(at: indexPath.row)
         
+        
+        /// Hidden ExpandButton
+        let descriptionText = post.previewText
+        cell.descriptionLabel.text = descriptionText
+        let characterCount = descriptionText.count
+        if characterCount < 82 {
+            cell.expandButton.isHidden = true
+            cell.expandButton.isEnabled = false
+        } else {
+            cell.expandButton.isHidden = false
+            cell.expandButton.isEnabled = true
+        }
+        
         /// Set the expandButton functionality: expand and collapse description
         if expandedCell.contains(indexPath.row) {
             cell.descriptionLabel.numberOfLines = 0
