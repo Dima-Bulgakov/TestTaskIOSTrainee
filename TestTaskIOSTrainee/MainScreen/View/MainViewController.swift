@@ -13,5 +13,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        let mainNM = MainNetworkManager()
+        mainNM.fetchData { post in
+            if let post = post {
+                print(post)
+            }
+        }
     }
 }
