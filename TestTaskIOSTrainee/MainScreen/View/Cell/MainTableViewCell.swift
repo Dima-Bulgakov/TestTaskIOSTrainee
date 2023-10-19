@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+final class MainTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     static let cellID = "MainTableViewCell"
@@ -57,7 +57,7 @@ class MainTableViewCell: UITableViewCell {
         return button
     }()
     
-    let hStack: UIStackView = {
+    private let hStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .leading
@@ -66,7 +66,7 @@ class MainTableViewCell: UITableViewCell {
         return stack
     }()
     
-    let vStack: UIStackView = {
+    private let vStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
@@ -86,7 +86,7 @@ class MainTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setViews() {
+    private func setViews() {
         hStack.addArrangedSubview(likeLabel)
         hStack.addArrangedSubview(dateLabel)
         

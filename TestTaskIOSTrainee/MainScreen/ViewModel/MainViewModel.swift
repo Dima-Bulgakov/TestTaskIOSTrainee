@@ -12,7 +12,7 @@ final class MainViewModel {
     // MARK: - Properties
     private let mainNetworkManager = MainNetworkManager()
     private var posts: [PostModel] = []
-    var topMenu = UIMenu()
+    private var topMenu = UIMenu()
     
     // MARK: - Methods
     func getPosts(completion: @escaping () -> Void) {

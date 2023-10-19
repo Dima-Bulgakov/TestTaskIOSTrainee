@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewModel {
+final class DetailViewModel {
     
     // MARK: - Properties
     let detailNetworkManager = DetailNetworkManager()

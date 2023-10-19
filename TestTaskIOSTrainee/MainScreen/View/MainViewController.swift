@@ -7,14 +7,14 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     // MARK: - Properties
     private let mainViewModel = MainViewModel()
     private let detailNetworkManager = DetailNetworkManager()
     private var expandedCell: IndexSet = []
 
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -35,17 +35,17 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func setViews() {
+    private func setViews() {
         view.addSubview(tableView)
         setupSortedButton()
     }
     
-    func setAppearance() {
+    private func setAppearance() {
         view.backgroundColor = .white
         navigationItem.title = Helper.Name.title
     }
     
-    func setDelegate() {
+    private func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
     }

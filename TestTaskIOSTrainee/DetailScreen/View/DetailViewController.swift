@@ -7,11 +7,11 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     // MARK: - Properties
-    let detailViewModel = DetailViewModel()
-    let detailNetworkManager = DetailNetworkManager()
+    private let detailViewModel = DetailViewModel()
+    private let detailNetworkManager = DetailNetworkManager()
     var selectedID: String?
     
     private let scrollView: UIScrollView = {
