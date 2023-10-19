@@ -56,6 +56,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    /// Sorted Button
     private func setupSortedButton() {
         let date = UIAction(title: Helper.Name.date,
                             image: Helper.Image.calendar) { [weak self] _ in
@@ -89,9 +90,9 @@ extension MainViewController: UITableViewDataSource {
         /// Set cell apearance
         cell.selectionStyle = .none
         
+        /// Access to data
         let post = mainViewModel.indexPost(at: indexPath.row)
         let formattedDate = mainViewModel.formattedDateForPost(at: indexPath.row)
-        
         
         /// Hidden ExpandButton
         let descriptionText = post.previewText
@@ -123,6 +124,7 @@ extension MainViewController: UITableViewDataSource {
             tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
         
+        /// Set data to UI
         cell.titleLabel.text = post.title
         cell.descriptionLabel.text = post.previewText
         cell.likeLabel.text = "❤️\(post.likesCount)"
@@ -131,6 +133,7 @@ extension MainViewController: UITableViewDataSource {
         return cell
     }
     
+    /// Number of cells in tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainViewModel.postsCount()
     }
@@ -141,6 +144,7 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
         let selectedID = "\(mainViewModel.indexPost(at: indexPath.row).postId)"
+        /// Pass the cell id to change the link in NetworkManager
         detailViewController.selectedID = selectedID
         navigationController?.pushViewController(detailViewController, animated: true)
     }

@@ -23,16 +23,17 @@ final class MainViewModel {
             completion()
         }
     }
-    
+    /// Number of posts
     func postsCount() -> Int {
         return posts.count
     }
     
+    /// Post with index
     func indexPost(at index: Int) -> PostModel {
         return posts[index]
     }
     
-    /// Sorting
+    /// Sorting methods for SortedButton
     func sortPostsByDate() {
         posts.sort { $0.timeshamp > $1.timeshamp }
     }
@@ -41,7 +42,7 @@ final class MainViewModel {
         posts.sort { $0.likesCount > $1.likesCount }
     }
     
-    /// Formatting the date
+    /// Convert data date
     func formattedDateForPost(at index: Int) -> String {
         let post = posts[index]
         let date = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))

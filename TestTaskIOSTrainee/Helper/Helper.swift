@@ -16,9 +16,6 @@ enum Helper {
         static let collapse = "Collapse"
         static let expand = "Expand"
         static let mainTVCell = "MainTableViewCell"
-        static let description = "description description description"
-        static let likes = "❤️ 1957"
-        static let dateNumber = "23 November 2022"
     }
     
     enum Image {

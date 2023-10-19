@@ -10,7 +10,7 @@ import UIKit
 final class MainTableViewCell: UITableViewCell {
 
     // MARK: - Properties
-    static let cellID = "MainTableViewCell"
+    static let cellID = Helper.Name.mainTVCell
     var expandButtonTapped: (() -> (Void))!
     
     let titleLabel: UILabel = {

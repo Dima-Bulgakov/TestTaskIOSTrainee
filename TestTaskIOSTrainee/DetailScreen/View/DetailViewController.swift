@@ -30,7 +30,6 @@ final class DetailViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Title"
         label.numberOfLines = 0
         label.textColor = .title
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -40,7 +39,6 @@ final class DetailViewController: UIViewController {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "likeLabel"
         label.numberOfLines = 0
         label.textColor = .text
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +47,6 @@ final class DetailViewController: UIViewController {
     
     private let likeLabel: UILabel = {
         let label = UILabel()
-        label.text = "likeLabel"
         label.textColor = .text
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +55,6 @@ final class DetailViewController: UIViewController {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "dateLabel"
         label.textColor = .text
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -122,6 +118,7 @@ final class DetailViewController: UIViewController {
         }
     }
 
+    /// Set data to UI
     private func loadData() {
         if let post = detailViewModel.post {
             titleLabel.text = post.title

@@ -14,8 +14,9 @@ final class DetailViewModel {
     var post: DetailModel?
     
     // MARK: - Methods
+    
+    /// Convert data date from API to "dd MMMM yyyy"
     func convertIntToDate(_ timestamp: Int) -> String {
-        /// Convert data date from API to "dd MMMM yyyy"
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM yyyy"
