@@ -14,5 +14,12 @@ class DetailViewModel {
     var post: DetailModel?
     
     // MARK: - Methods
-
+    func convertIntToDate(_ timestamp: Int) -> String {
+        /// Convert data date from API to "dd MMMM yyyy"
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        return dateFormatter.string(from: date)
+    }
 }

@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     
     private let mainImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .text
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Title"
         label.numberOfLines = 0
-        label.textColor = .darkGray
+        label.textColor = .title
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,7 +42,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "likeLabel"
         label.numberOfLines = 0
-        label.textColor = .gray
+        label.textColor = .text
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -50,7 +50,7 @@ class DetailViewController: UIViewController {
     private let likeLabel: UILabel = {
         let label = UILabel()
         label.text = "likeLabel"
-        label.textColor = .gray
+        label.textColor = .text
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -59,7 +59,7 @@ class DetailViewController: UIViewController {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "dateLabel"
-        label.textColor = .gray
+        label.textColor = .text
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -127,7 +127,7 @@ class DetailViewController: UIViewController {
             titleLabel.text = post.title
             descriptionLabel.text = post.text
             likeLabel.text = "❤️\(post.likesCount)"
-//            dateLabel.text = detailViewModel.convertIntToDate(post.timeshamp)
+            dateLabel.text = detailViewModel.convertIntToDate(post.timeshamp)
 
             if let urlImage = post.postImage {
                 detailNetworkManager.loadImage(from: urlImage) { [weak self] image in

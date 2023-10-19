@@ -16,7 +16,7 @@ class MainTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .darkGray
+        label.textColor = .title
         label.font = .systemFont(ofSize: 20, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -26,14 +26,14 @@ class MainTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 18)
-        label.textColor = .gray
+        label.textColor = .text
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let likeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .text
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,7 +41,7 @@ class MainTableViewCell: UITableViewCell {
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .text
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,7 +49,7 @@ class MainTableViewCell: UITableViewCell {
     
     lazy var expandButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .gray
+        button.backgroundColor = .button
         button.setTitle("Expand", for: .normal)
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
