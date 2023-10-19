@@ -20,6 +20,7 @@
 		32BF15F02AE11A79007EC056 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15EF2AE11A79007EC056 /* DetailViewModel.swift */; };
 		32BF15F22AE11A80007EC056 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F12AE11A80007EC056 /* DetailModel.swift */; };
 		32BF15F42AE11A8B007EC056 /* DetailNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F32AE11A8B007EC056 /* DetailNetworkManager.swift */; };
+		32BF15F82AE162CE007EC056 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF15F72AE162CE007EC056 /* Extension+UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		32BF15EF2AE11A79007EC056 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		32BF15F12AE11A80007EC056 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		32BF15F32AE11A8B007EC056 /* DetailNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNetworkManager.swift; sourceTree = "<group>"; };
+		32BF15F72AE162CE007EC056 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		32BF15F52AE11A94007EC056 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				32BF15F72AE162CE007EC056 /* Extension+UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				32BF15DB2AE1193C007EC056 /* MainViewController.swift in Sources */,
 				32BF15E62AE119F2007EC056 /* MainNetworkManager.swift in Sources */,
 				32BF15EE2AE11A62007EC056 /* DetailViewController.swift in Sources */,
+				32BF15F82AE162CE007EC056 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
