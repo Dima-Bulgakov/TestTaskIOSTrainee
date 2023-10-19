@@ -10,6 +10,8 @@ import UIKit
 class MainViewController: UIViewController {
     
     // MARK: - Properties
+    private let mainViewModel = MainViewModel()
+    
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.cellID)
@@ -25,6 +27,7 @@ class MainViewController: UIViewController {
         setViews()
         setDelegate()
         setConstraints()
+        fetchDataAndReloadTableView()
     }
     
     // MARK: - Methods
@@ -40,6 +43,12 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    private func fetchDataAndReloadTableView() {
+        mainViewModel.getPosts { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -49,16 +58,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: MainTableViewCell.cellID,
             for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
-        cell.titleLabel.text = "Title"
-        cell.descriptionLabel.text = "descriptionLabel"
-        cell.likeLabel.text = "1840"
-        cell.dateLabel.text = "23 November 2022"
+        let post = mainViewModel.indexPost(at: indexPath.row)
+        
+        cell.titleLabel.text = post.title
+        cell.descriptionLabel.text = post.previewText
+        cell.likeLabel.text = "❤️\(post.likesCount)"
+        cell.dateLabel.text = "\(post.timeshamp)"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return mainViewModel.postsCount()
     }
 }
 
