@@ -16,6 +16,8 @@ class MainViewController: UIViewController {
 
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.cellID)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -83,6 +85,9 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MainTableViewCell.cellID,
             for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        
+        /// Set cell apearance
+        cell.selectionStyle = .none
         
         let post = mainViewModel.indexPost(at: indexPath.row)
         let formattedDate = mainViewModel.formattedDateForPost(at: indexPath.row)
