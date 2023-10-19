@@ -59,11 +59,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
         let post = mainViewModel.indexPost(at: indexPath.row)
+        let formattedDate = mainViewModel.formattedDateForPost(at: indexPath.row)
         
         cell.titleLabel.text = post.title
         cell.descriptionLabel.text = post.previewText
         cell.likeLabel.text = "❤️\(post.likesCount)"
-        cell.dateLabel.text = "\(post.timeshamp)"
+        cell.dateLabel.text = formattedDate
         
         return cell
     }
