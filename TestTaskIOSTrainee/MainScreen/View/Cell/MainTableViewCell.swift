@@ -11,6 +11,7 @@ class MainTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     static let cellID = "MainTableViewCell"
+    var expandButtonTapped: (() -> (Void))!
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -98,7 +99,16 @@ class MainTableViewCell: UITableViewCell {
     }
     
     @objc private func expandButtonAction() {
-        
+        expandButtonTapped()
+    }
+    
+    /// Priority ExpandButton tap before a cell
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let buttonPoint = convert(point, to: expandButton)
+        if expandButton.point(inside: buttonPoint, with: event) {
+            return expandButton
+        }
+        return super.hitTest(point, with: event)
     }
 }
 

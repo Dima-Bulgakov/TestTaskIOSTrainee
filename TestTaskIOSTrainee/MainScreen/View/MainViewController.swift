@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     private let mainViewModel = MainViewModel()
     private let detailNetworkManager = DetailNetworkManager()
+    private var expandedCell: IndexSet = []
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -29,7 +30,6 @@ class MainViewController: UIViewController {
         setDelegate()
         setConstraints()
         fetchDataAndReloadTableView()
-        
     }
     
     // MARK: - Methods
@@ -85,6 +85,24 @@ extension MainViewController: UITableViewDataSource {
         
         let post = mainViewModel.indexPost(at: indexPath.row)
         let formattedDate = mainViewModel.formattedDateForPost(at: indexPath.row)
+        
+        /// Set the expandButton functionality: expand and collapse description
+        if expandedCell.contains(indexPath.row) {
+            cell.descriptionLabel.numberOfLines = 0
+            cell.expandButton.setTitle("Collapse", for: .normal)
+        }
+        else {
+            cell.descriptionLabel.numberOfLines = 2
+        }
+        
+        cell.expandButtonTapped = {
+            if self.expandedCell.contains(indexPath.row) {
+                self.expandedCell.remove(indexPath.row)
+            } else {
+                self.expandedCell.insert(indexPath.row)
+            }
+            tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
         
         cell.titleLabel.text = post.title
         cell.descriptionLabel.text = post.previewText
