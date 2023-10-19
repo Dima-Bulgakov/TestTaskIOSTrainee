@@ -52,7 +52,8 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - Extensions
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+/// DataSource
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MainTableViewCell.cellID,
@@ -74,6 +75,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+/// Delegate
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
+
+/// Constrains
 extension MainViewController {
     func setConstraints() {
         let sideConstant: CGFloat = 20
