@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct DetailPostModel: Decodable {
+    let post: DetailModel
+}
+
+struct DetailModel: Decodable {
+    let postId: Int
+    let timeshamp: Int
+    let title: String
+    let text: String
+    let postImage: URL?
+    let likesCount: Int
+}
