@@ -14,14 +14,5 @@ class DetailViewModel {
     var post: DetailModel?
     
     // MARK: - Methods
-    func getPost(completion: @escaping (DetailModel?) -> Void) {
-        detailNetworkManager.fetchData { result in
-            self.post = result
-            completion(result)
-        }
-    }
-    
-    func loadImage(from imageURL: URL, completion: @escaping (UIImage?) -> Void) {
-            detailNetworkManager.loadImage(from: imageURL, completion: completion)
-        }
+
 }

@@ -11,6 +11,8 @@ class DetailViewController: UIViewController {
 
     // MARK: - Properties
     let detailViewModel = DetailViewModel()
+    let detailNetworkManager = DetailNetworkManager()
+    var selectedID: String?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -88,7 +90,10 @@ class DetailViewController: UIViewController {
         setupAppearance()
         setupViews()
         setupConstraints()
+        
+        putSelectedIDToNetworkManager()
         updateUI()
+        
     }
     
     //  MARK: - Methods
@@ -111,25 +116,30 @@ class DetailViewController: UIViewController {
     }
     
     private func updateUI() {
-        detailViewModel.getPost { [weak self] result in
-            guard let self = self else { return }
+        detailNetworkManager.fetchData { result in
+            self.detailViewModel.post = result
             self.loadData()
         }
     }
-    
+
     private func loadData() {
         if let post = detailViewModel.post {
             titleLabel.text = post.title
             descriptionLabel.text = post.text
             likeLabel.text = "❤️\(post.likesCount)"
-            dateLabel.text = "\(post.timeshamp)"
-            
+//            dateLabel.text = detailViewModel.convertIntToDate(post.timeshamp)
+
             if let urlImage = post.postImage {
-                detailViewModel.loadImage(from: urlImage) { [weak self] image in
+                detailNetworkManager.loadImage(from: urlImage) { [weak self] image in
                     self?.mainImageView.image = image
                 }
             }
         }
+    }
+    
+    /// Put SelectedID to NetworkManager for change the API link
+    private func putSelectedIDToNetworkManager() {
+        detailNetworkManager.selectedID = selectedID
     }
 }
 

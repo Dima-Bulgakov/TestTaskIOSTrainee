@@ -11,7 +11,8 @@ class MainViewController: UIViewController {
     
     // MARK: - Properties
     private let mainViewModel = MainViewModel()
-    
+    private let detailNetworkManager = DetailNetworkManager()
+
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.cellID)
@@ -28,6 +29,7 @@ class MainViewController: UIViewController {
         setDelegate()
         setConstraints()
         fetchDataAndReloadTableView()
+        
     }
     
     // MARK: - Methods
@@ -79,6 +81,8 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
+        let selectedID = "\(mainViewModel.indexPost(at: indexPath.row).postId)"
+        detailViewController.selectedID = selectedID
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

@@ -9,14 +9,17 @@ import UIKit
 
 final class DetailNetworkManager {
     
+    var selectedID: String?
+    
     func fetchData(completion: @escaping (DetailModel?) -> Void) {
         
-        let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/111.json"
+        guard let urlID = selectedID else { return }
+        let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/\(urlID).json"
         guard let url = URL(string: urlString) else { return }
         
         let data = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
-                print("Erorr fetching data: \(error.localizedDescription)")
+                print("Error fetching posts: \(error.localizedDescription)")
                 completion(nil)
                 return
             }
@@ -31,11 +34,12 @@ final class DetailNetworkManager {
             
             do {
                 let decodedData = try decoder.decode(DetailPostModel.self, from: jsonData)
+                
                 DispatchQueue.main.async {
                     completion(decodedData.post)
                 }
             } catch {
-                print("Erorr decoding data: \(error.localizedDescription)")
+                print("Error decoding data: \(error.localizedDescription)")
                 completion(nil)
             }
         }
