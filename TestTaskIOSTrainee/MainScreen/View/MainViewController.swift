@@ -49,7 +49,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: MainTableViewCell.cellID,
             for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
-        cell.textLabel?.text = "TEST"
+        cell.titleLabel.text = "Title"
+        cell.descriptionLabel.text = "descriptionLabel"
+        cell.likeLabel.text = "1840"
+        cell.dateLabel.text = "23 November 2022"
+        
         return cell
     }
     
