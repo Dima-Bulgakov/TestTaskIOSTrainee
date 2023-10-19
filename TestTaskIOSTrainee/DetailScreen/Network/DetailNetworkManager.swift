@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DetailNetwork {
+final class DetailNetworkManager {
     
     func fetchData(completion: @escaping (DetailModel?) -> Void) {
         

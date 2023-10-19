@@ -7,3 +7,15 @@
 
 import Foundation
 
+class DetailViewModel {
+    
+    let detailNetworkManager = DetailNetworkManager()
+    var post: DetailModel?
+    
+    func getPost(completion: @escaping (DetailModel?) -> Void) {
+        detailNetworkManager.fetchData { result in
+            self.post = result
+            completion(result)
+        }
+    }
+}

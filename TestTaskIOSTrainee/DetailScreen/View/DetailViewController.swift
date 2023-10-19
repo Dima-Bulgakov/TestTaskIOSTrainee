@@ -10,7 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
 
     // MARK: - Properties
-    let detailNetwork = DetailNetwork()
+    let detailViewModel = DetailViewModel()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -88,12 +88,7 @@ class DetailViewController: UIViewController {
         setupAppearance()
         setupViews()
         setupConstraints()
-        
-        detailNetwork.fetchData { result in
-            if let data = result {
-                print(result)
-            }
-        }
+        updateUI()
     }
     
     //  MARK: - Methods
@@ -113,6 +108,22 @@ class DetailViewController: UIViewController {
     private func setupAppearance() {
         navigationItem.title = "Title"
         view.backgroundColor = .systemBackground
+    }
+    
+    private func updateUI() {
+        detailViewModel.getPost { [weak self] result in
+            guard let self = self else { return }
+            self.loadData()
+        }
+    }
+    
+    private func loadData() {
+        if let post = detailViewModel.post {
+            titleLabel.text = post.title
+            descriptionLabel.text = post.text
+            likeLabel.text = "❤️\(post.likesCount)"
+            dateLabel.text = "\(post.timeshamp)"
+        }
     }
 }
 
