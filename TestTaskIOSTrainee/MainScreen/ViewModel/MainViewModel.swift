@@ -5,13 +5,14 @@
 //  Created by Dima on 19.10.2023.
 //
 
-import Foundation
+import UIKit
 
 final class MainViewModel {
     
     // MARK: - Properties
     private let mainNetworkManager = MainNetworkManager()
     private var posts: [PostModel] = []
+    var topMenu = UIMenu()
     
     // MARK: - Methods
     func getPosts(completion: @escaping () -> Void) {
@@ -31,6 +32,16 @@ final class MainViewModel {
         return posts[index]
     }
     
+    /// Sorting
+    func sortPostsByDate() {
+        posts.sort { $0.timeshamp > $1.timeshamp }
+    }
+
+    func sortPostsByRate() {
+        posts.sort { $0.likesCount > $1.likesCount }
+    }
+    
+    /// Formatting the date
     func formattedDateForPost(at index: Int) -> String {
         let post = posts[index]
         let date = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))

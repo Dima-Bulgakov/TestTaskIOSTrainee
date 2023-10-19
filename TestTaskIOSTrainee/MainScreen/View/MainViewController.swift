@@ -35,6 +35,7 @@ class MainViewController: UIViewController {
     // MARK: - Methods
     func setViews() {
         view.addSubview(tableView)
+        setupSortedButton()
     }
     
     func setAppearance() {
@@ -50,6 +51,27 @@ class MainViewController: UIViewController {
         mainViewModel.getPosts { [weak self] in
             self?.tableView.reloadData()
         }
+    }
+    
+    private func setupSortedButton() {
+        let date = UIAction(title: "Date",
+                            image: UIImage(systemName: "calendar")) { [weak self] _ in
+            self?.mainViewModel.sortPostsByDate()
+            self?.tableView.reloadData()
+        }
+        
+        let rate = UIAction(title: "Rate",
+                            image: UIImage(systemName: "heart")) { [weak self] _ in
+            self?.mainViewModel.sortPostsByRate()
+            self?.tableView.reloadData()
+        }
+        
+        let topMenu = UIMenu(title: "Sorted by", children: [date, rate])
+        let barButton = UIBarButtonItem(
+            image: UIImage(named: "sort"),
+            menu: topMenu)
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.rightBarButtonItem = barButton        
     }
 }
 
