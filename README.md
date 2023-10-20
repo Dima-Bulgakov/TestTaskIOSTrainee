@@ -12,7 +12,7 @@ iOS test task for treinee position
 
 - Scroll TableView with data
 
-- Expand and collapse extra text
+- Expand and collapse extra text in cell
 
 - Click on the cell to go to the detailed screen
 
