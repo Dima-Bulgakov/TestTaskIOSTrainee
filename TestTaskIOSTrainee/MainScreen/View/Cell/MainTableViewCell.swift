@@ -117,28 +117,20 @@ extension MainTableViewCell {
         let expandButtonHeightConstant: CGFloat = 45
         let betweenVStackAndExpandButtonConstant: CGFloat = 20
         let betweenCellsConstant: CGFloat = 30
-
-        if expandButton.isEnabled {
-            NSLayoutConstraint.activate([
-                vStack.topAnchor.constraint(equalTo: topAnchor),
-                vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideVStacConstant),
-                vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant)
-            ])
-
-            NSLayoutConstraint.activate([
-                expandButton.topAnchor.constraint(equalTo: vStack.bottomAnchor, constant: betweenVStackAndExpandButtonConstant),
-                expandButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-                expandButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-                expandButton.heightAnchor.constraint(equalToConstant: expandButtonHeightConstant),
-                expandButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -betweenCellsConstant)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                vStack.topAnchor.constraint(equalTo: topAnchor),
-                vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideVStacConstant),
-                vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant),
-                vStack.bottomAnchor.constraint(equalTo: bottomAnchor)
-            ])
-        }
+        
+        NSLayoutConstraint.activate([
+            vStack.topAnchor.constraint(equalTo: topAnchor),
+            vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideVStacConstant),
+            vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant)
+        ])
+        
+        NSLayoutConstraint.activate([
+            expandButton.topAnchor.constraint(equalTo: vStack.bottomAnchor, constant: betweenVStackAndExpandButtonConstant),
+            expandButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            expandButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            expandButton.heightAnchor.constraint(equalToConstant: expandButtonHeightConstant),
+            expandButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -betweenCellsConstant)
+        ])
     }
 }
+
