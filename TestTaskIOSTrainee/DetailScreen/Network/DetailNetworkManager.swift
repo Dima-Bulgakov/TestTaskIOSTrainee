@@ -9,11 +9,13 @@ import UIKit
 
 final class DetailNetworkManager {
     
-    var selectedID: String?
+    // MARK: - Propeerty
+    var selectedId: String?
     
+    // MARK: - Methods
+    /// Fetch data from API
     func fetchData(completion: @escaping (DetailModel?) -> Void) {
-        
-        guard let urlID = selectedID else { return }
+        guard let urlID = selectedId else { return }
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/\(urlID).json"
         guard let url = URL(string: urlString) else { return }
         
@@ -46,7 +48,8 @@ final class DetailNetworkManager {
         data.resume()
     }
     
-    func loadImage(from imageURL: URL, completion: @escaping (UIImage?) -> Void) {
+    /// Fetch image from API
+    func fetchImage(from imageURL: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: imageURL) { data, response, error in
             if let error = error {
                 print("Error fetching image data: \(error.localizedDescription)")

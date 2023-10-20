@@ -21,6 +21,6 @@ enum Helper {
     enum Image {
         static let calendar = UIImage(systemName: "calendar")
         static let heart = UIImage(systemName: "heart")
-        static let sorted = UIImage(named: "sort")
+        static let sort = UIImage(named: "sortButton")
     }
 }

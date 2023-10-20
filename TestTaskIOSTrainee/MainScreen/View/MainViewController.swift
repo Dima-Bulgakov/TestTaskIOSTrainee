@@ -11,14 +11,13 @@ final class MainViewController: UIViewController {
     
     // MARK: - Properties
     private let mainViewModel = MainViewModel()
-    private let detailNetworkManager = DetailNetworkManager()
     private var expandedCell: IndexSet = []
 
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.cellID)
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.idCell)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -37,7 +36,7 @@ final class MainViewController: UIViewController {
     // MARK: - Methods
     private func setViews() {
         view.addSubview(tableView)
-        setupSortedButton()
+        setSortButton()
     }
     
     private func setAppearance() {
@@ -56,24 +55,21 @@ final class MainViewController: UIViewController {
         }
     }
     
-    /// Sorted Button
-    private func setupSortedButton() {
-        let date = UIAction(title: Helper.Name.date,
-                            image: Helper.Image.calendar) { [weak self] _ in
+    /// Create sort button with UIMenu
+    private func setSortButton() {
+        let date = UIAction(title: Helper.Name.date, image: Helper.Image.calendar) { [weak self] _ in
             self?.mainViewModel.sortPostsByDate()
             self?.tableView.reloadData()
         }
         
-        let rate = UIAction(title: Helper.Name.rate,
-                            image: Helper.Image.heart) { [weak self] _ in
+        let rate = UIAction(title: Helper.Name.rate, image: Helper.Image.heart) { [weak self] _ in
             self?.mainViewModel.sortPostsByRate()
             self?.tableView.reloadData()
         }
         
         let topMenu = UIMenu(title: Helper.Name.sortedBy, children: [date, rate])
-        let barButton = UIBarButtonItem(
-            image: Helper.Image.sorted,
-            menu: topMenu)
+        let barButton = UIBarButtonItem( image: Helper.Image.sort, menu: topMenu)
+        
         navigationController?.navigationBar.tintColor = .black
         navigationItem.rightBarButtonItem = barButton        
     }
@@ -84,7 +80,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: MainTableViewCell.cellID,
+            withIdentifier: MainTableViewCell.idCell,
             for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
         /// Set cell apearance
@@ -92,37 +88,15 @@ extension MainViewController: UITableViewDataSource {
         
         /// Access to data
         let post = mainViewModel.indexPost(at: indexPath.row)
+        
+        /// Formatted data date
         let formattedDate = mainViewModel.formattedDateForPost(at: indexPath.row)
         
-        /// Hidden ExpandButton
-        let descriptionText = post.previewText
-        cell.descriptionLabel.text = descriptionText
-        let characterCount = descriptionText.count
-        if characterCount < 82 {
-            cell.expandButton.isHidden = true
-            cell.expandButton.isEnabled = false
-        } else {
-            cell.expandButton.isHidden = false
-            cell.expandButton.isEnabled = true
-        }
+        /// Hide ExpandButton
+        hideExpandButton(cell, forPost: post)
         
-        /// Set the expandButton functionality: expand and collapse description
-        if expandedCell.contains(indexPath.row) {
-            cell.descriptionLabel.numberOfLines = 0
-            cell.expandButton.setTitle(Helper.Name.collapse, for: .normal)
-        }
-        else {
-            cell.descriptionLabel.numberOfLines = 2
-        }
-        
-        cell.expandButtonTapped = {
-            if self.expandedCell.contains(indexPath.row) {
-                self.expandedCell.remove(indexPath.row)
-            } else {
-                self.expandedCell.insert(indexPath.row)
-            }
-            tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        }
+        /// Expand and collapse text
+        expandAndCollapseText(cell, indexPath: indexPath, tableView: tableView)
         
         /// Set data to UI
         cell.titleLabel.text = post.title
@@ -143,10 +117,46 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
-        let selectedID = "\(mainViewModel.indexPost(at: indexPath.row).postId)"
+        let selectedId = "\(mainViewModel.indexPost(at: indexPath.row).postId)"
         /// Pass the cell id to change the link in NetworkManager
-        detailViewController.selectedID = selectedID
+        detailViewController.selectedId = selectedId
         navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
+
+/// Hide button and expand button methods
+extension MainViewController {
+    /// Hide ExpandButton
+    func hideExpandButton(_ cell: MainTableViewCell, forPost post: PostModel) {
+        let descriptionText = post.previewText
+        cell.descriptionLabel.text = descriptionText
+        let characterCount = descriptionText.count
+        if characterCount < 82 {
+            cell.expandButton.isHidden = true
+            cell.expandButton.isEnabled = false
+        } else {
+            cell.expandButton.isHidden = false
+            cell.expandButton.isEnabled = true
+        }
+    }
+    
+    /// Expand and collapse text
+    func expandAndCollapseText(_ cell: MainTableViewCell, indexPath: IndexPath, tableView: UITableView) {
+        if expandedCell.contains(indexPath.row) {
+            cell.descriptionLabel.numberOfLines = 0
+            cell.expandButton.setTitle(Helper.Name.collapse, for: .normal)
+        } else {
+            cell.descriptionLabel.numberOfLines = 2
+        }
+        
+        cell.expandButtonTapped = {
+            if self.expandedCell.contains(indexPath.row) {
+                self.expandedCell.remove(indexPath.row)
+            } else {
+                self.expandedCell.insert(indexPath.row)
+            }
+            tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
     }
 }
 

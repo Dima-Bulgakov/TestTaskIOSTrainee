@@ -23,6 +23,7 @@ final class MainViewModel {
             completion()
         }
     }
+    
     /// Number of posts
     func postsCount() -> Int {
         return posts.count
@@ -33,7 +34,7 @@ final class MainViewModel {
         return posts[index]
     }
     
-    /// Sorting methods for SortedButton
+    /// Sorting methods for SorButton
     func sortPostsByDate() {
         posts.sort { $0.timeshamp > $1.timeshamp }
     }

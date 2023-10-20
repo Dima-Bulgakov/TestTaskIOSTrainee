@@ -10,7 +10,7 @@ import UIKit
 final class MainTableViewCell: UITableViewCell {
 
     // MARK: - Properties
-    static let cellID = Helper.Name.mainTVCell
+    static let idCell = Helper.Name.mainTVCell
     var expandButtonTapped: (() -> (Void))!
     
     let titleLabel: UILabel = {
@@ -81,9 +81,7 @@ final class MainTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     // MARK: - Methods
     private func setViews() {
@@ -141,7 +139,6 @@ extension MainTableViewCell {
                 vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant),
                 vStack.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
-
         }
     }
 }
