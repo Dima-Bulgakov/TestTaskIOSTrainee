@@ -23,4 +23,8 @@ enum Helper {
         static let heart = UIImage(systemName: "heart")
         static let sort = UIImage(named: "sortButton")
     }
+    
+    enum Constant {
+        static let characters = 82
+    }
 }

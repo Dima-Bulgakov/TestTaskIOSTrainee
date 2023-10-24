@@ -13,6 +13,10 @@ final class MainTableViewCell: UITableViewCell {
     static let idCell = Helper.Name.mainTVCell
     var expandButtonTapped: (() -> (Void))!
     
+    /// Constraints for ExpandButton
+    var enabledButtonConstraints: [NSLayoutConstraint] = []
+    var disabledButtonConstraints: [NSLayoutConstraint] = []
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -118,19 +122,23 @@ extension MainTableViewCell {
         let betweenVStackAndExpandButtonConstant: CGFloat = 20
         let betweenCellsConstant: CGFloat = 30
         
-        NSLayoutConstraint.activate([
+        enabledButtonConstraints = [
             vStack.topAnchor.constraint(equalTo: topAnchor),
             vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideVStacConstant),
-            vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant)
-        ])
-        
-        NSLayoutConstraint.activate([
+            vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant),
+            
             expandButton.topAnchor.constraint(equalTo: vStack.bottomAnchor, constant: betweenVStackAndExpandButtonConstant),
             expandButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             expandButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             expandButton.heightAnchor.constraint(equalToConstant: expandButtonHeightConstant),
             expandButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -betweenCellsConstant)
-        ])
+        ]
+        
+        disabledButtonConstraints = [
+            vStack.topAnchor.constraint(equalTo: topAnchor),
+            vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideVStacConstant),
+            vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideVStacConstant),
+            vStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -betweenCellsConstant)
+        ]
     }
 }
-

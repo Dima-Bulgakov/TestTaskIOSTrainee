@@ -131,12 +131,16 @@ extension MainViewController {
         let descriptionText = post.previewText
         cell.descriptionLabel.text = descriptionText
         let characterCount = descriptionText.count
-        if characterCount < 82 {
+        if characterCount < Helper.Constant.characters {
             cell.expandButton.isHidden = true
             cell.expandButton.isEnabled = false
+            NSLayoutConstraint.deactivate(cell.enabledButtonConstraints)
+            NSLayoutConstraint.activate(cell.disabledButtonConstraints)
         } else {
             cell.expandButton.isHidden = false
             cell.expandButton.isEnabled = true
+            NSLayoutConstraint.deactivate(cell.disabledButtonConstraints)
+            NSLayoutConstraint.activate(cell.enabledButtonConstraints)
         }
     }
     
